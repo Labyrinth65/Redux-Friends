@@ -11,4 +11,64 @@
 		color: darkblue;
 		text-align: center;
 	}
+	.active {
+		background: lightskyblue;
+	}
+}
+
+.friendList {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+}
+
+.toHome {
+	button {
+		margin: 1%;
+	}
+}
+
+.friendCard {
+	display: flex;
+	flex-flow: column wrap;
+	background: lightskyblue;
+	color: darkblue;
+	padding: 0 1% 1% 1%;
+	margin: 1%;
+	width: 25%;
+	.cardElement {
+		font-size: 1.5rem;
+		text-align: center;
+	}
+	.buttonDiv {
+		display: flex;
+		justify-content: flex-end;
+		.deleteButton {
+			width: 10%;
+		}
+	}
+}
+
+.friendAdd {
+	display: flex;
+	flex-flow: column wrap;
+	width: 30%;
+	padding: 1%;
+	.addElement {
+		padding: 1%;
+		margin: 2%;
+	}
+	button {
+		width: 50%;
+		margin: 2% auto;
+		padding: 1%;
+	}
+}
+
+.updateForm {
+	display: flex;
+	button {
+		width: 70%;
+		height: 50%;
+	}
 }

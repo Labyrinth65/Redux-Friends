@@ -5,16 +5,16 @@ import {
 	LOGIN_FAILURE,
 	FETCH_DATA_START,
 	FETCH_DATA_SUCCESS,
-	FETCH_DATA_FAILURE
+	FETCH_DATA_FAILURE,
+	ADD_FRIEND_SUCCESS,
+	ADD_FRIEND_FAIL
 } from "../actions";
 
 const initialState = {
 	friends: [],
 	loggingIn: false,
 	fetchingFriends: false,
-	savingFriends: false,
 	updatingFriend: false,
-	deletingFriend: false,
 	error: null
 };
 
@@ -62,6 +62,16 @@ const fetchDataReducer = (state = initialState, action) => {
 			return {
 				...state,
 				fetchingFriends: false,
+				error: action.payload
+			};
+		case ADD_FRIEND_SUCCESS:
+			return {
+				...state,
+				friends: action.payload
+			};
+		case ADD_FRIEND_FAIL:
+			return {
+				...state,
 				error: action.payload
 			};
 		default:
