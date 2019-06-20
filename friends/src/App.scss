@@ -1,0 +1,14 @@
+.navBar {
+	display: flex;
+	justify-content: space-evenly;
+	.navLink {
+		font-size: 2rem;
+		text-decoration: none;
+		background: whitesmoke;
+		flex-grow: 1;
+		padding: 1%;
+		border: 1px solid black;
+		color: darkblue;
+		text-align: center;
+	}
+}
