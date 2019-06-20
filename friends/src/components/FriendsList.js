@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { login, getData } from "./actions";
+import { getData } from "./actions";
 import { connect } from "react-redux";
 
 export class FriendsList extends Component {
@@ -18,12 +18,12 @@ export class FriendsList extends Component {
 }
 
 const mapStateToProps = state => ({
-	// friends: state.getData.friends,
-	// error: state.getData.error,
-	// fetchingFriends: state.getData.fetchingFriends,
-	// savingFriends: state.getData.savingFriends,
-	// updatingFriend: state.getData.updatingFriend,
-	// deletingFriend: state.getData.deletingFriend
+	friends: state.fetchDataReducer.friends,
+	error: state.fetchDataReducer.error,
+	fetchingFriends: state.fetchDataReducer.fetchingFriends,
+	savingFriends: state.fetchDataReducer.savingFriends,
+	updatingFriend: state.fetchDataReducer.updatingFriend,
+	deletingFriend: state.fetchDataReducer.deletingFriend
 });
 
 export default connect(
