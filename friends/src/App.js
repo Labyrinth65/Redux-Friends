@@ -18,12 +18,12 @@ function App() {
 					<NavLink exact to="/login" className="navLink">
 						Login
 					</NavLink>
-					<NavLink exact to="/protected" className="navLink">
+					<NavLink exact to="/friendslist" className="navLink">
 						Friends List
 					</NavLink>
 				</div>
 				<Route path="/login" component={Login} />
-				<PrivateRoute exact path="/protected" component={FriendsList} />
+				<PrivateRoute exact path="/friendslist" component={FriendsList} />
 			</div>
 		</Router>
 	);
