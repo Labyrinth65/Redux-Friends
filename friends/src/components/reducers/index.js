@@ -7,7 +7,12 @@ import {
 	FETCH_DATA_SUCCESS,
 	FETCH_DATA_FAILURE,
 	ADD_FRIEND_SUCCESS,
-	ADD_FRIEND_FAIL
+	ADD_FRIEND_FAIL,
+	DELETE_FRIEND_SUCCESS,
+	DELETE_FRIEND_FAIL,
+	UPDATE_FRIEND_START,
+	UPDATE_FRIEND_SUCCESS,
+	UPDATE_FRIEND_FAIL
 } from "../actions";
 
 const initialState = {
@@ -67,11 +72,42 @@ const fetchDataReducer = (state = initialState, action) => {
 		case ADD_FRIEND_SUCCESS:
 			return {
 				...state,
-				friends: action.payload
+				friends: action.payload,
+				error: null
 			};
 		case ADD_FRIEND_FAIL:
 			return {
 				...state,
+				error: action.payload
+			};
+		case DELETE_FRIEND_SUCCESS:
+			return {
+				...state,
+				friends: action.payload,
+				error: null
+			};
+		case DELETE_FRIEND_FAIL:
+			return {
+				...state,
+				error: action.payload
+			};
+		case UPDATE_FRIEND_START:
+			return {
+				...state,
+				error: null,
+				updatingFriend: true
+			};
+		case UPDATE_FRIEND_SUCCESS:
+			return {
+				...state,
+				friends: action.payload,
+				updatingFriend: false,
+				error: null
+			};
+		case UPDATE_FRIEND_FAIL:
+			return {
+				...state,
+				updatingFriend: false,
 				error: action.payload
 			};
 		default:

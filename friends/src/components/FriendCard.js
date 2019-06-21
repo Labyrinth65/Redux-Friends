@@ -21,7 +21,10 @@ export class FriendCard extends Component {
 		}
 	};
 
+	// Need to switch the logic from class state to redux
+	// move update and delete buttons to card render, add view card on this element
 	render() {
+		console.log(this.props);
 		return (
 			<div className="friendCard">
 				<div className="cardElement buttonDiv">

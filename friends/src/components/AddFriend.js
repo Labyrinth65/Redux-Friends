@@ -1,12 +1,13 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addFriend } from "./actions";
 
 class AddFriend extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			name: "",
-			age: "",
+			age: 0,
 			email: ""
 		};
 	}
@@ -19,18 +20,16 @@ class AddFriend extends React.Component {
 		console.log(this.props);
 		return (
 			<div>
-				{/* <Link to={`/friendslist`} className="toHome">
-				<button>Back to List</button>
-			</Link> */}
 				<form
 					onSubmit={e => {
 						e.preventDefault();
-						const newFriend = {
-							name: this.state.name,
-							age: parseInt(this.state.age),
-							email: this.state.email
-						};
-						this.props.addFriend(newFriend);
+						// const newFriend = {
+						// 	name: this.state.name,
+						// 	age: parseInt(this.state.age),
+						// 	email: this.state.email
+						// };
+						// this.props.addFriend(newFriend);
+						this.props.addFriend({ ...this.state });
 						this.props.history.push("/friendslist");
 					}}
 					className="friendAdd"
@@ -75,4 +74,7 @@ class AddFriend extends React.Component {
 	}
 }
 
-export default AddFriend;
+export default connect(
+	null,
+	{ addFriend }
+)(AddFriend);

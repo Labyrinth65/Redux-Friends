@@ -53,7 +53,32 @@ export const addFriend = friend => dispatch => {
 
 export const DELETE_FRIEND_SUCCESS = "DELETE_FRIEND_SUCCESS";
 export const DELETE_FRIEND_FAIL = "DELETE_FRIEND_FAIL";
+export const deleteFriend = id => dispatch => {
+	axiosWithAuth()
+		.delete("/api/friends/:id", id)
+		.then(res => {
+			console.log(res.data);
+			dispatch({ type: DELETE_FRIEND_SUCCESS, payload: res.data });
+		})
+		.catch(err => {
+			console.log(err.response);
+			dispatch({ type: DELETE_FRIEND_FAIL, payload: err.response });
+		});
+};
 
 export const UPDATE_FRIEND_START = "UPDATE_FRIEND_START";
 export const UPDATE_FRIEND_SUCCESS = "UPDATE_FRIEND_SUCCESS";
 export const UPDATE_FRIEND_FAIL = "UPDATE_FRIEND_FAIL";
+export const updateFriend = friend => dispatch => {
+	dispatch({ type: UPDATE_FRIEND_START });
+	axiosWithAuth()
+		.post("/api/friends/:id", friend)
+		.then(res => {
+			console.log(res.data);
+			dispatch({ type: UPDATE_FRIEND_SUCCESS, payload: res.data });
+		})
+		.catch(err => {
+			console.log(err.response);
+			dispatch({ type: UPDATE_FRIEND_FAIL, payload: err.response });
+		});
+};
