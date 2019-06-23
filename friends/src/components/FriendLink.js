@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import Friend from "./Friend";
+import FriendCard from "./FriendCard";
 import Loader from "react-loader-spinner";
 
-const FriendsList = props => {
-	console.log(props);
+const FriendLink = props => {
 	if (props.fetchingFriends) {
 		return (
 			<div className="loadingIcon">
@@ -14,12 +13,12 @@ const FriendsList = props => {
 	}
 
 	return (
-		<div>
-			<div className="friendList">
-				{props.friends.map(friend => (
-					<Friend key={friend.id} {...friend} />
+		<div className="friend">
+			{props.friends
+				.filter(friend => friend.id === parseInt(props.match.params.id, 10))
+				.map(friend => (
+					<FriendCard {...friend} {...props} key={friend.id} />
 				))}
-			</div>
 		</div>
 	);
 };
@@ -33,4 +32,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	null
-)(FriendsList);
+)(FriendLink);

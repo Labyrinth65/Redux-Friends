@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { deleteFriend, updateFriend } from "./actions";
 
-// Need to switch the logic from class state to redux
 export class CardRender extends Component {
 	constructor(props) {
 		super(props);
@@ -19,13 +16,14 @@ export class CardRender extends Component {
 	};
 
 	formSubmit = e => {
+		e.preventDefault();
 		const updatedFriend = {
 			name: this.state.cardName,
 			age: parseInt(this.state.cardAge),
 			email: this.state.cardEmail
 		};
-		this.props.updateFriend(e, this.props.id, updatedFriend);
-		this.props.updateState();
+		this.props.updateFriend(this.props.id, updatedFriend);
+		this.props.updateState(e);
 	};
 
 	render() {
@@ -40,7 +38,7 @@ export class CardRender extends Component {
 			);
 		} else
 			return (
-				<form onSubmit={this.formSubmit} className="updateForm">
+				<form onSubmit={e => this.formSubmit(e)} className="updateForm">
 					<div>
 						<input
 							onChange={this.handleUpdate}
@@ -82,14 +80,4 @@ CardRender.propTypes = {
 	email: PropTypes.string.isRequired
 };
 
-const mapStateToProps = state => ({
-	friends: state.fetchDataReducer.friends,
-	error: state.fetchDataReducer.error,
-	fetchingFriends: state.fetchDataReducer.fetchingFriends,
-	updatingFriend: state.fetchDataReducer.updatingFriend
-});
-
-export default connect(
-	mapStateToProps,
-	{ deleteFriend, updateFriend }
-)(CardRender);
+export default CardRender;

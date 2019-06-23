@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import CardRender from "./CardRender";
+import { deleteFriend, updateFriend } from "./actions";
+import { connect } from "react-redux";
 
 export class FriendCard extends Component {
 	constructor() {
@@ -21,10 +23,9 @@ export class FriendCard extends Component {
 		}
 	};
 
-	// Need to switch the logic from class state to redux
-	// move update and delete buttons to card render, add view card on this element
 	render() {
 		console.log(this.props);
+		console.log(this.props.match);
 		return (
 			<div className="friendCard">
 				<div className="cardElement buttonDiv">
@@ -32,15 +33,18 @@ export class FriendCard extends Component {
 						<i className="far fa-edit" />
 					</div>
 					<div
-						onClick={e => this.props.deleteFriend(e, this.props.id)}
+						onClick={e => {
+							e.preventDefault();
+							this.props.deleteFriend(this.props.id);
+							return this.props.match === undefined
+								? null
+								: this.props.history.push("/friendslist");
+						}}
 						className="deleteButton"
 					>
 						<i className="far fa-trash-alt" />
 					</div>
 				</div>
-				{/* <div className="cardElement">{this.props.name}</div>
-				<div className="cardElement">{this.props.age}</div>
-				<div className="cardElement">{this.props.email}</div> */}
 				<CardRender
 					{...this.props}
 					{...this.state}
@@ -52,4 +56,12 @@ export class FriendCard extends Component {
 	}
 }
 
-export default FriendCard;
+const mapStateToProps = state => ({
+	error: state.fetchDataReducer.error,
+	updatingFriend: state.fetchDataReducer.updatingFriend
+});
+
+export default connect(
+	mapStateToProps,
+	{ updateFriend, deleteFriend }
+)(FriendCard);

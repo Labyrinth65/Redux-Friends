@@ -55,7 +55,7 @@ export const DELETE_FRIEND_SUCCESS = "DELETE_FRIEND_SUCCESS";
 export const DELETE_FRIEND_FAIL = "DELETE_FRIEND_FAIL";
 export const deleteFriend = id => dispatch => {
 	axiosWithAuth()
-		.delete("/api/friends/:id", id)
+		.delete(`/api/friends/${id}`)
 		.then(res => {
 			console.log(res.data);
 			dispatch({ type: DELETE_FRIEND_SUCCESS, payload: res.data });
@@ -69,10 +69,10 @@ export const deleteFriend = id => dispatch => {
 export const UPDATE_FRIEND_START = "UPDATE_FRIEND_START";
 export const UPDATE_FRIEND_SUCCESS = "UPDATE_FRIEND_SUCCESS";
 export const UPDATE_FRIEND_FAIL = "UPDATE_FRIEND_FAIL";
-export const updateFriend = friend => dispatch => {
+export const updateFriend = (id, updatedFriend) => dispatch => {
 	dispatch({ type: UPDATE_FRIEND_START });
 	axiosWithAuth()
-		.post("/api/friends/:id", friend)
+		.put(`/api/friends/${id}`, updatedFriend)
 		.then(res => {
 			console.log(res.data);
 			dispatch({ type: UPDATE_FRIEND_SUCCESS, payload: res.data });

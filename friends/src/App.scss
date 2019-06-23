@@ -16,10 +16,28 @@
 	}
 }
 
+.loadingIcon {
+	margin: 20%;
+	display: flex;
+	justify-content: center;
+}
+
+// FriendsList - sets spacing for friend cards
 .friendList {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-evenly;
+}
+
+// Friend and FriendLink - sets cards
+.friend {
+	display: flex;
+	flex-flow: column wrap;
+	background: lightskyblue;
+	color: darkblue;
+	padding: 0 1% 1% 1%;
+	margin: 1% auto;
+	width: 25%;
 }
 
 .toHome {
@@ -29,13 +47,6 @@
 }
 
 .friendCard {
-	display: flex;
-	flex-flow: column wrap;
-	background: lightskyblue;
-	color: darkblue;
-	padding: 0 1% 1% 1%;
-	margin: 1%;
-	width: 25%;
 	.cardElement {
 		font-size: 1.5rem;
 		text-align: center;

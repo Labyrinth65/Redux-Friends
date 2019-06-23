@@ -23,13 +23,10 @@ class AddFriend extends React.Component {
 				<form
 					onSubmit={e => {
 						e.preventDefault();
-						// const newFriend = {
-						// 	name: this.state.name,
-						// 	age: parseInt(this.state.age),
-						// 	email: this.state.email
-						// };
-						// this.props.addFriend(newFriend);
-						this.props.addFriend({ ...this.state });
+						this.props.addFriend({
+							...this.state,
+							age: parseInt(this.state.age)
+						});
 						this.props.history.push("/friendslist");
 					}}
 					className="friendAdd"
